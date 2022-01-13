@@ -12,7 +12,7 @@ import static data.DatabaseHelper.*;
 public class PageTest {
     @BeforeEach
     void setUp() {
-        open("http://localhost:9999");
+        open("http://localhost:3306");
     }
 
     @AfterEach
