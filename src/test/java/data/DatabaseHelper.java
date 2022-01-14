@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseHelper {
 
@@ -17,12 +18,12 @@ public class DatabaseHelper {
 
     @SneakyThrows
     private static Connection establishConnection() {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3366/app", "app", "pass");
     }
 
     @SneakyThrows
     public static String getCode() {
-    return runn.query(conn, "SELECT code FROM auth_codes", new ScalarHandler<>());
+        return runn.query(conn, "SELECT code FROM auth_codes", new ScalarHandler<>());
     }
 
     @SneakyThrows
@@ -36,6 +37,7 @@ public class DatabaseHelper {
         runn.execute(conn, "TRUNCATE cards;");
         runn.execute(conn, "TRUNCATE card_transactions;");
         runn.execute(conn, "DELETE FROM users WHERE status LIKE '%ive';");
+
     }
 }
 
