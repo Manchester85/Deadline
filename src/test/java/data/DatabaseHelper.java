@@ -1,12 +1,12 @@
 package data;
 
 import lombok.SneakyThrows;
+import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DatabaseHelper {
 
@@ -17,13 +17,15 @@ public class DatabaseHelper {
     }
 
     @SneakyThrows
-    private static Connection establishConnection() {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3366/app", "app", "pass");
+    public static String getCode() {
+        val codeSQL = "SELECT code FROM auth_codes";
+        val code = runn.query(conn, codeSQL, new ScalarHandler<String>());
+        return code;
     }
 
     @SneakyThrows
-    public static String getCode() {
-        return runn.query(conn, "SELECT code FROM auth_codes", new ScalarHandler<>());
+    private static Connection establishConnection() {
+        return DriverManager.getConnection("jdbc:mysql://localhost:9999/app", "app", "pass");
     }
 
     @SneakyThrows
