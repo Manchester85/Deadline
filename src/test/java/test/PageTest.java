@@ -32,12 +32,14 @@ public class PageTest {
     }
 
     @Test
-    @Disabled
     void shouldBeBlocked() {
         LoginPage page = new LoginPage();
         page.login(getAnotherAuthInfo());
+        page.cleanFields();
         page.login(getAnotherAuthInfo());
+        page.cleanFields();
         page.blockingLogin(getAnotherAuthInfo());
+
     }
 }
 
